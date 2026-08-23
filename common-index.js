@@ -464,31 +464,6 @@ function initCursorEffects() {
     document.addEventListener('mouseout',e=>{const t=e.target.closest('a,button,.tool-item,.link-btn,.control-btn,.sidebar-link,.music-item,.bg-option,.quick-card,.func-card');if(t){cursorEl.style.transform='translate(-50%,-50%) scale(1)';cursorEl.querySelector('.outer').style.borderColor='#ffffff';cursorEl.querySelector('.inner').style.borderColor='rgba(255,255,255,0.7)';cursorEl.querySelector('.dot').style.background='#ffffff';}});
 }
 
-// ================= 骨架屏隐藏 + 主题过渡动画 =================
-function preloadBgThenHide(callback){
-    // 优先从 localStorage 读取背景图，若没有则用默认
-    let bgUrl=null;
-    try{bgUrl=localStorage.getItem('xiongda_bg');}catch(e){}
-    if(!bgUrl)bgUrl='https://img.8845.top/acg';
-    // 如果是视频背景，直接隐藏
-    try{if(localStorage.getItem('xiongda_bg_type')==='video'){callback();return;}}catch(e){}
-    const img=new Image();
-    img.onload=img.onerror=callback;
-    img.src=bgUrl;
-}
-function hideSkeletonOverlay(){
-    const isTrans=sessionStorage.getItem('theme_transition');
-    if(isTrans){
-        try{sessionStorage.removeItem('theme_transition');}catch(e){}
-        preloadBgThenHide(()=>{
-            const sk=document.getElementById('skeleton-overlay');
-            if(sk){sk.classList.add('fade-out');setTimeout(()=>sk.remove(),600);}
-        });
-    }else{
-        const sk=document.getElementById('skeleton-overlay');
-        if(sk){sk.classList.add('fade-out');setTimeout(()=>sk.remove(),600);}
-    }
-}
 function initViewTransitions(){
     if(!document.startViewTransition)return;
     document.addEventListener('click',e=>{const link=e.target.closest('a[href]');if(!link)return;const href=link.getAttribute('href');if(!href||href.startsWith('#')||href.startsWith('javascript:')||href.startsWith('mailto:')||href.startsWith('tel:'))return;if(link.target==='_blank')return;try{const url=new URL(href,location.origin);if(url.origin!==location.origin)return;}catch(err){return;}e.preventDefault();document.startViewTransition(()=>{window.location.href=href;});});
@@ -510,7 +485,6 @@ function initIndexPage(themeId) {
     initLyricScroll();
         initAmbientCanvas(themeId);
     initCursorEffects();
-    hideSkeletonOverlay();
     initViewTransitions();
     // BG URL input enter
     const bgInput=document.getElementById('bg-url-input');
