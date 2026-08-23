@@ -643,7 +643,6 @@
             .profile-card { padding-top: 64px; }
             .avatar-wrap { top: -50px; width: 100px; height: 100px; }
             .tools-card { padding: 20px; }
-            #log-panel { width: 90%; left: 5%; bottom: 80px; }
             /* 移动端背景固定会导致 iOS 滚动异常，改为随页面滚动 */
             body { background-attachment: scroll; }
             /* 播放控制栏换行居中，避免 8 个按钮在窄屏溢出 */
@@ -813,18 +812,6 @@
     <video id="bg-video" autoplay muted loop playsinline></video>
     <div id="bg-video-overlay"></div>
 
-        </div>
-        <div class="log-filter-tabs">
-            <span class="log-tab active" data-cat="all" onclick="filterLogs('all')">全部</span>
-            <span class="log-tab" data-cat="system" onclick="filterLogs('system')"><i class="fas fa-cog"></i> 系统</span>
-            <span class="log-tab" data-cat="player" onclick="filterLogs('player')"><i class="fas fa-music"></i> 播放器</span>
-            <span class="log-tab" data-cat="api" onclick="filterLogs('api')"><i class="fas fa-cloud"></i> API</span>
-            <span class="log-tab" data-cat="lyrics" onclick="filterLogs('lyrics')"><i class="fas fa-microphone-alt"></i> 歌词</span>
-            <span class="log-tab" data-cat="weather" onclick="filterLogs('weather')"><i class="fas fa-cloud-sun"></i> 天气</span>
-            <span class="log-tab log-tab-error" data-cat="error" onclick="filterLogs('error')"><i class="fas fa-exclamation-triangle"></i> 错误</span>
-        </div>
-        <div id="log-content"></div>
-    </div>
 
     <div class="layout-container">
         <!-- 左侧：个人名片 -->
